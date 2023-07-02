@@ -1,1 +1,1 @@
-# spring-boot-grpc-demo
+# java-demo
