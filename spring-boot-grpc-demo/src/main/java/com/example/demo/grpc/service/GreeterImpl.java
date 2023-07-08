@@ -1,7 +1,9 @@
 package com.example.demo.grpc.service;
 
 import com.example.demo.grpc.annotation.GrpcService;
-import com.google.protobuf.ByteString;
+import com.example.grpc.generated.GreeterGrpc;
+import com.example.grpc.generated.SayHelloReq;
+import com.example.grpc.generated.SayHelloResp;
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
