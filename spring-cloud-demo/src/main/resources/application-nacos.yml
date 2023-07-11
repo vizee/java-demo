@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        file-extension: yaml
+        server-addr: localhost:8848
+#        namespace: 4817138d-a1a5-465a-aef6-48fa7ae10e64
+      discovery:
+        server-addr: localhost:8848
+#        namespace: 4817138d-a1a5-465a-aef6-48fa7ae10e64
+  config:
+    import: 'optional:nacos:${spring.application.name}-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}'

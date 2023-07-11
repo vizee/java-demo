@@ -1,0 +1,14 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: '@project.artifactId@'
+    instance_id: '${spring.cloud.client.hostname}:${server.port}'
+  profiles:
+    active: consul
+logging:
+  level:
+    root: info
+app:
+  home:
+    helloPrefix: 'Hola,'

@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        catalog-services-watch-timeout: 55
+      config:
+        enabled: false
+        format: YAML
+  config:
+    import: 'optional:consul:'
