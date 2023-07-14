@@ -1,0 +1,47 @@
+server:
+  port: 8222
+spring:
+  application:
+    name: '@project.artifactId@'
+  cloud:
+    gateway:
+      default-filters:
+        - name: Auth
+          args:
+            authHeader: 'X-User'
+            ignorePaths:
+              - '/login'
+              - '/example'
+      routes:
+        - id: example
+          uri: https://example.org
+          predicates:
+            - Path=/example/**
+        - id: redirect_example
+          uri: https://example.org
+          predicates:
+            - Path=/redirect/example/**
+          filters:
+            - RedirectTo=302, https://example.org
+        - id: my_get
+          uri: https://httpbin.org
+          predicates:
+            - Path=/my_get/**
+          filters:
+            - RewritePath=/my_get/(?<path>.*), /get?path=$\{path}
+        - id: userdemo
+          uri: lb://demo
+          predicates:
+            - Path=/userdemo/**
+          filters:
+            - RewritePath=/userdemo/(?<path>.*), /$\{path}
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  profiles:
+    active: consul
+logging:
+  level:
+    root: info
+    'org.springframework.web.server': debug
