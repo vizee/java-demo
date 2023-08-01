@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package hellogrpc;
+
+option java_package = "org.example.grpc.generated";
+option java_outer_classname = "HelloWorldProto";
+option java_multiple_files = true;
+
+service Greeter {
+    rpc SayHello (SayHelloReq) returns (SayHelloResp);
+}
+
+message SayHelloReq {
+    string name = 1;
+}
+
+message SayHelloResp {
+    string message = 1;
+}
